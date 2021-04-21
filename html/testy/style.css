@@ -41,3 +41,8 @@ main {
 #toRun {
     grid-column: 3/4;
 }
+
+#Template {
+    width: 5vw;
+    height: 5vh;
+}

@@ -6,104 +6,35 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Robot</title>
-    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
-
+    <script src="dataUpdate.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<body onload="init()">
     <header>
         <h1>Robots For Life</h1>
     </header>
     <main>
         <div id="tools">
             <h1>Tools</h1>
-            <form method="get" action="./template/">
+            <form method="get" action="./template/template.zip">
                 <button type="submit" id="sample">Download Template!</button>
             </form>
             <form action="upload.php" method="post" enctype="multipart/form-data">
                 Select a script to upload:
                 <input type="file" name="fileToUpload" id="fileToUpload">
-                <input type="submit" value="Upload Image" name="submit">
+                <input type="submit" value="Upload Script" name="submit">
             </form>
         </div>
 
         <div id="currentRun">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/9WuipMKX-YM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            <p id="currentlyRunning">{{currentlyRunning}}</p>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/Im9rvzTOmXA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <p id="currentlyRunning"></p>
         </div>
         <div id="toRun">
             <h1>File Queue</h1>
-            <ol id="root">
-                <li v-for='file of files'>{{file}}</li>
-            </ol>
+            <ol id="toRunList"></ol>
         </div>
-        <script>
-            let app = new Vue({
-                el: '#root',
-                data: {
-                    title: "file-queue",
-                    files: [],
-                    lastRan: "AwaitingSubmission"
-
-                },
-                methods: {
-                    getFiles() {
-                        return this.$data.files;
-                    },
-                    setFiles(arrays) {
-                        this.$data.files = arrays
-                    }
-
-
-                }
-
-            });
-            checkList()
-
-            setInterval(checkList, 1000);
-
-
-
-            function checkList() {
-
-
-                loadJSON(function(response) {
-                    let json = JSON.parse(response)
-                    let index = json['currentNumber']
-                    let submittedNum = json['amountSubmitted']
-                    let f = Object.values(json["files"])
-                    if (submittedNum > 0) {
-                        console.log("asds")
-                        let files = app.getFiles()
-                        let fileboys = f.slice(index)
-                        let missing = fileboys.filter(n => !files.includes(n))
-                        let dontNeed = files.filter(n => !fileboys.includes(n))
-                        files = files.filter(n => !dontNeed.includes(n))
-                        files = files.concat(missing)
-                        app.setFiles(files)
-                        console.log(app.getFiles())
-                    }
-
-
-                })
-
-            }
-
-            function loadJSON(callback) {
-
-                var xobj = new XMLHttpRequest();
-                xobj.overrideMimeType("application/json");
-                xobj.open('GET', 'data.json', true); // Replace 'appDataServices' with the path to your file
-                xobj.onreadystatechange = function() {
-                    if (xobj.readyState == 4 && xobj.status == "200") {
-                        // Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
-                        callback(xobj.responseText);
-                    }
-                };
-                xobj.send(null);
-            }
-        </script>
 
 
     </main>
