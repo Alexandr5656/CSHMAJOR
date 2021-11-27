@@ -1,7 +1,7 @@
 <h1>CSH MajorProject Robot "PleaseWork"</h1>
 <p>I got the idea when someone brought up having a seminar on making robots but it was considered hard since people couldnt come to floor to have time with the robot and people wouldnt have
 access to the same kits without spending money. This way people can program the same robot over a distance. After i finished and was talking with my roommate i also realized 
-that this could be used just to program any arduino project in general over a distance for a classroom setting.</p>
+that this could be used just to program any Raspberry Pi project in general over a distance for a classroom setting.</p>
 <ul>
   <li>How to make readme files on github</li>
   <li>How to set up linux vm's and work with them</li>
